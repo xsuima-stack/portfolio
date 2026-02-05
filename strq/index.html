@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    /* fade animation */
+    .fade {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* mobile menu */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: #061c24;
+      transform: translateX(100%);
+      transition: transform 0.4s ease;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    .menu-inner {
+      text-align: center;
+      color: #bfcbd1;
+    }
+
+    .menu-inner svg {
+      width: 120px;
+      margin: 0 auto 32px;
+    }
+
+    .menu-inner nav a {
+      display: block;
+      margin: 16px 0;
+      letter-spacing: 0.15em;
+    }
+
+    .contact {
+      margin-top: 40px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .menu-btn {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #2dd4bf;
+      color: black;
+      font-size: 24px;
+      z-index: 200;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-900">
+
+<!-- Mobile Menu -->
+<aside id="mobileMenu" class="mobile-menu">
+  <div class="menu-inner">
+    <svg viewBox="0 0 100 100" fill="none" stroke="#2dd4bf" stroke-width="3">
+      <polygon points="50,10 90,80 10,80" />
+      <polyline points="45,40 55,40 48,60 58,60" />
+    </svg>
+
+   <nav class="space-y-6 text-sm tracking-widest">
+  <a href="#top" class="block hover:text-teal-400">HOLA</a>
+
+  <a href="#works" class="block hover:text-teal-400">
+    MIS TRABAJOS
+  </a>
+
+  <a href="#what" class="block hover:text-teal-400">
+    LO QUE HAGO
+  </a>
+
+  <a href="#about" class="block hover:text-teal-400">
+    QUIÉN SOY
+  </a>
+
+  <a href="#contact" class="block font-bold hover:text-teal-400">
+    ¿HABLAMOS?
+  </a>
+</nav>
+
+
+    <div class="contact">¿HABLAMOS?</div>
+  </div>
+</aside>
+
+<!-- Toggle Button -->
+<button id="menuBtn" class="menu-btn">☀︎</button>
+
+<!-- Header -->
+<header class="fixed top-0 w-full bg-white/80 backdrop-blur z-50 border-b">
+  <nav class="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
+   
+  </nav><footer class="py-10 text-xs text-gray-400">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    © 2026 チー太郎デモサイト
+  </div>
+</footer>
+
+</footer>
+
+</header>
+
+<!-- Hero -->
+<section
+  class="min-h-screen flex items-center justify-center px-6 bg-cover bg-center"
+  style="background-image: url('images/hero.jpg');"
+>
+  <div class="text-center fade bg-white/80 backdrop-blur px-8 py-10 rounded-xl">
+    <h1 class="text-5xl font-black mb-6">Web Designer & Developer</h1>
+    <p class="text-gray-600">シンプルで美しいWebサイトを作ります。</p>
+  </div>
+</section>
+
+<!-- JS -->
+<script>
+  const btn = document.getElementById('menuBtn');
+  const menu = document.getElementById('mobileMenu');
+
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('open');
+  });
+
+  // fade in
+  const fades = document.querySelectorAll('.fade');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  fades.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
